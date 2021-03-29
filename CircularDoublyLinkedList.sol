@@ -28,7 +28,8 @@ contract CircularDoublyLinkedList {
             tail = 1;
         }else{
             linkedList[tail].next = tail+1;
-            linkedList[tail] = node(tail++,0,_val);
+            linkedList[tail+1] = node(tail,0,_val);
+            tail++;
         }
     }
     
@@ -40,7 +41,9 @@ contract CircularDoublyLinkedList {
             tail = linkedList[tail].last;
         }
         uint256 a = linkedList[_index].last;
+        uint256 b = linkedList[_index].next;
         linkedList[a].next = linkedList[_index].next;
+        linkedList[b].last = linkedList[_index].last;
     }
     
     /// @notice helper function
